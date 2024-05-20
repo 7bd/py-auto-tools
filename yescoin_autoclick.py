@@ -17,16 +17,16 @@ pyautogui.FAILSAFE = False
 
 
 TELEGRAM_WINDOW_WIDTH = 502
-TELEGRAM_WINDOW_HEIGHT = 844
+TELEGRAM_WINDOW_HEIGHT = 902
 WIDTH = 280
 HEIGHT = 210
 STEPS_X = 1
 STEPS_Y = 3
 STEP_SIZE_X = WIDTH // STEPS_X
 STEP_SIZE_Y = HEIGHT // STEPS_Y
-CLICK_POINTS_BOOST_CHEST = [(380, 700), (160, 460), (80, 120)]
-CLICK_POINTS_BOOST_RECOVERY = [(380, 700), (340, 460), (80, 120)]
-SCAN_TIME = 300
+CLICK_POINTS_BOOST_CHEST = [(375, 750), (160, 510), (78, 165)]
+CLICK_POINTS_BOOST_RECOVERY = [(375, 750), (340, 510), (78, 165)]
+SCAN_TIME = 600
 HORIZONTAL_SCANS = 10
 
 
@@ -55,8 +55,11 @@ async def move_to_all_points():
         print("No window with title 'Telegram Web' found.")
         return
 
+    pyautogui.click(telegram_window.left + 170, telegram_window.top + 25)
+    await asyncio.sleep(2)
+
     start_x = telegram_window.left + (telegram_window.width - WIDTH) // 2
-    start_y = telegram_window.top + (telegram_window.height - HEIGHT) // 2
+    start_y = telegram_window.top + (telegram_window.height - HEIGHT) // 2 + 30
     end_x = start_x + WIDTH
     end_y = start_y + HEIGHT
 
