@@ -3,7 +3,6 @@
 """
 This module provides functionality for automatically moving the mouse cursor
 across the screen and clicking at specific points after a certain amount of time.
-The movement and clicking is intended to interact with the 'Telegram Web' window.
 """
 
 import asyncio
@@ -55,7 +54,7 @@ async def move_to_all_points():
         print("No window with title 'Telegram Web' found.")
         return
 
-    pyautogui.click(telegram_window.left + 170, telegram_window.top + 25)
+    pyautogui.click(telegram_window.left + 165, telegram_window.top + 25)
     await asyncio.sleep(2)
 
     start_x = telegram_window.left + (telegram_window.width - WIDTH) // 2

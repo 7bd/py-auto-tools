@@ -8,7 +8,8 @@ import subprocess
 import time
 
 scripts = [
-    {'path': 'ocean_autoclick.py', 'time': 40},
+    {'path': 'ocean_autoclick.py', 'time': 30},
+    {'path': 'seed_autoclick.py', 'time': 20},
     {'path': 'yescoin_autoclick.py', 'time': 2*60*60 + 2*60},
 ]
 

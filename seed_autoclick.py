@@ -15,9 +15,9 @@ TELEGRAM_WINDOW_WIDTH = 502
 TELEGRAM_WINDOW_HEIGHT = 902
 
 points = [
-    {'coords': (356, 560), 'wait_time': 2},
-    {'coords': (260, 510), 'wait_time': 20},
-    {'coords': (78, 165), 'wait_time': 2},
+    {'coords': (280, 660), 'wait_time': 2},
+    {'coords': (380, 660), 'wait_time': 2},
+    {'coords': (260, 510), 'wait_time': 10},
 ]
 
 
@@ -31,7 +31,7 @@ async def main():
         print("No window with title 'Telegram Web' found.")
         return
 
-    pyautogui.click(telegram_window.left + 215, telegram_window.top + 25)
+    pyautogui.click(telegram_window.left + 260, telegram_window.top + 25)
     await asyncio.sleep(2)
 
     for point in points:
