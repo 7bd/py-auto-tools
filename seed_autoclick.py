@@ -11,28 +11,21 @@ import pygetwindow as gw
 
 pyautogui.FAILSAFE = False
 
-TELEGRAM_WINDOW_WIDTH = 502
-TELEGRAM_WINDOW_HEIGHT = 902
 
 points = [
-    {'coords': (280, 660), 'wait_time': 2},
-    {'coords': (380, 660), 'wait_time': 2},
-    {'coords': (260, 510), 'wait_time': 10},
+    {'coords': (300, 660), 'wait_time': 2},
+    {'coords': (400, 660), 'wait_time': 2},
+    {'coords': (280, 510), 'wait_time': 10},
 ]
 
 
 async def main():
     """ Main function. """
     try:
-        telegram_window = gw.getWindowsWithTitle("Telegram Web")[0]
-        telegram_window.activate()
-        telegram_window.resizeTo(TELEGRAM_WINDOW_WIDTH, TELEGRAM_WINDOW_HEIGHT)
+        telegram_window = gw.getActiveWindow()
     except IndexError:
         print("No window with title 'Telegram Web' found.")
         return
-
-    pyautogui.click(telegram_window.left + 260, telegram_window.top + 25)
-    await asyncio.sleep(2)
 
     for point in points:
         pyautogui.click(

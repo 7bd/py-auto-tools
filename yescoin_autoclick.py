@@ -15,17 +15,15 @@ import pygetwindow as gw
 pyautogui.FAILSAFE = False
 
 
-TELEGRAM_WINDOW_WIDTH = 502
-TELEGRAM_WINDOW_HEIGHT = 902
-WIDTH = 280
-HEIGHT = 210
-STEPS_X = 1
+WIDTH = 201
+HEIGHT = 213
+STEPS_X = 3
 STEPS_Y = 3
 STEP_SIZE_X = WIDTH // STEPS_X
 STEP_SIZE_Y = HEIGHT // STEPS_Y
-CLICK_POINTS_BOOST_CHEST = [(375, 750), (160, 510), (78, 165)]
-CLICK_POINTS_BOOST_RECOVERY = [(375, 750), (340, 510), (78, 165)]
-SCAN_TIME = 600
+CLICK_POINTS_BOOST_CHEST = [(395, 750), (180, 510), (98, 165)]
+CLICK_POINTS_BOOST_RECOVERY = [(395, 750), (360, 510), (98, 165)]
+SCAN_TIME = 60
 HORIZONTAL_SCANS = 10
 
 
@@ -47,15 +45,10 @@ async def click_at_points(window):
 async def move_to_all_points():
     ''' Move the mouse to every point on the screen. '''
     try:
-        telegram_window = gw.getWindowsWithTitle("Telegram Web")[0]
-        telegram_window.activate()
-        telegram_window.resizeTo(TELEGRAM_WINDOW_WIDTH, TELEGRAM_WINDOW_HEIGHT)
+        telegram_window = gw.getActiveWindow()
     except IndexError:
         print("No window with title 'Telegram Web' found.")
         return
-
-    pyautogui.click(telegram_window.left + 165, telegram_window.top + 25)
-    await asyncio.sleep(2)
 
     start_x = telegram_window.left + (telegram_window.width - WIDTH) // 2
     start_y = telegram_window.top + (telegram_window.height - HEIGHT) // 2 + 30
@@ -73,11 +66,11 @@ async def move_to_all_points():
             for _ in range(HORIZONTAL_SCANS):
                 if direction == 1:
                     for x in range(last_x, end_x + STEP_SIZE_X, STEP_SIZE_X):
-                        tasks.append(move_to_point(x, y, 0.2 if x != last_x else 0))
+                        tasks.append(move_to_point(x, y, 0.1 if x != last_x else 0))
                     last_x = end_x
                 else:
                     for x in range(last_x, start_x - STEP_SIZE_X, -STEP_SIZE_X):
-                        tasks.append(move_to_point(x, y, 0.2 if x != last_x else 0))
+                        tasks.append(move_to_point(x, y, 0.1 if x != last_x else 0))
                     last_x = start_x
                 direction *= -1
         await asyncio.gather(*tasks)
